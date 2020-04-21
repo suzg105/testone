@@ -25,17 +25,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.edit_cn)
     EditText editCn;
-    @BindView(R.id.fanyi)
-    TextView fanyi;
-    @BindView(R.id.start_fanyi)
-    Button startFanyi;
+    @BindView(R.id.to_translate)
+    TextView ToTranslate;
+    @BindView(R.id.start_translate)
+    Button startTranslate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        startFanyi.setOnClickListener(new View.OnClickListener() {
+        startTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e("test",editCn.getText().toString());
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                         testBean data = response.body();
                         if(data.getStatus()!=1){
-                            Toast.makeText(MainActivity.this,"太难啦，我都不知道这是不是中文",Toast.LENGTH_LONG).show();
-                            fanyi.setText("");
+                            Toast.makeText(MainActivity.this,"太难啦，我都不知道这是个什么玩意儿",Toast.LENGTH_LONG).show();
+                            ToTranslate.setText("");
                         }else{
-                            fanyi.setText(data.getContent().getOut());
+                            ToTranslate.setText(data.getContent().getOut());
                         }
                     }
 
