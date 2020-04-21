@@ -1,8 +1,6 @@
 package com.example.testone;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,8 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.edit_zhongwen)
-    EditText editZhongwen;
+    @BindView(R.id.edit_cn)
+    EditText editCn;
     @BindView(R.id.fanyi)
     TextView fanyi;
     @BindView(R.id.start_fanyi)
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         startFanyi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("test",editZhongwen.getText().toString());
+                Log.e("test",editCn.getText().toString());
                 Gson gson = new GsonBuilder()
                         .setDateFormat("yyyy-MM-dd hh:mm:ss")
                         .create();
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 String a="fy";
                 String f="zh-CN";
                 String t="en";
-                String w=editZhongwen.getText().toString().trim();
+                String w=editCn.getText().toString().trim();
                 APi api = retrofit.create(APi.class);
                 Call<testBean> call=api.getExchange(a,f,t,w);
                 call.enqueue(new Callback<testBean>() {
@@ -77,24 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        editZhongwen.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-
-            }
-        });
-
 
     }
 }

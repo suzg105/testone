@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:hint="请输入中文"
-        android:id="@+id/edit_zhongwen"/>
+        android:id="@+id/edit_cn"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
