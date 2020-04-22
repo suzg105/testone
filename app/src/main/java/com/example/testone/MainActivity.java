@@ -1,5 +1,8 @@
 package com.example.testone;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +79,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+@Override
+public void onStart() {
+    super.onStart();
+    editCn.setText(getCopy(this));
+}
+    public static String getCopy(Context context) {
+        // 获取系统剪贴板
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        // 返回数据
+        ClipData clipData = clipboard.getPrimaryClip();
+        if (clipData != null && clipData.getItemCount() > 0) {
+            return clipData.getItemAt(0).getText().toString();
+        }
+        return null;
     }
 }
 
